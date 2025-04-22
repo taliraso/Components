@@ -3,12 +3,14 @@ using UnityEngine.InputSystem;
 
 public class TargetManager : MonoBehaviour
 {
+    private bool wasInRange = false;
+    
     [Header("Settings")]
-    public float matchTolerance = 5f; // Degrees
-    public float hapticThreshold = 10f; // How close the dial needs to be to trigger haptics
-    public float randomDelay = 1f;
+    public float matchTolerance;
+    public float hapticThreshold;
+    public float holdDuration;
+    public float randomDelay;
 
-    // Pure target data (not attached to any object)
     private float leftDialTargetY;
     private float rightDialTargetY;
 
@@ -16,38 +18,75 @@ public class TargetManager : MonoBehaviour
     public Transform leftDial;
     public Transform rightDial;
 
+    [Header("Visual Feedback")]
+    public Renderer leftDialIndicator;
+    public Renderer rightDialIndicator;
+    public Material defaultMaterial;
+    public Material inRangeMaterial;
+
     private Gamepad gamepad;
+    private float matchTimer = 0f;
+    private bool matchTriggered = false;
 
     void Start()
     {
-        gamepad = Gamepad.current; // Get the current gamepad (make sure a gamepad is connected)
+        gamepad = Gamepad.current;
         if (gamepad == null)
         {
-            Debug.LogError("No Gamepad connected!");
+            Debug.LogWarning("No Gamepad connected!");
         }
         GenerateNewTargets();
     }
 
     void Update()
     {
-        if (IsDialMatched(leftDial, leftDialTargetY) && IsDialMatched(rightDial, rightDialTargetY))
-        {
-            Debug.Log("✅ Both dials matched!");
-            Invoke(nameof(GenerateNewTargets), randomDelay);
-        }
+        bool leftInRange = IsDialCloseToTarget(leftDial, leftDialTargetY);
+        bool rightInRange = IsDialCloseToTarget(rightDial, rightDialTargetY);
+        bool bothMatched = IsDialMatched(leftDial, leftDialTargetY) && IsDialMatched(rightDial, rightDialTargetY);
 
-        // Check proximity to target for haptics
-        if (IsDialCloseToTarget(leftDial, leftDialTargetY))
+        // Material Feedback
+        leftDialIndicator.material = leftInRange ? inRangeMaterial : defaultMaterial;
+        rightDialIndicator.material = rightInRange ? inRangeMaterial : defaultMaterial;
+
+        // Haptic Feedback
+        if (leftInRange || rightInRange)
         {
-            TriggerHapticFeedback(0.5f, 0.5f); // Moderate vibration intensity
-        }
-        else if (IsDialCloseToTarget(rightDial, rightDialTargetY))
-        {
-            TriggerHapticFeedback(0.5f, 0.5f); // Moderate vibration intensity
+            TriggerHapticFeedback(0.5f, 0.5f);
         }
         else
         {
-            StopHapticFeedback(); // Stop vibration if no match
+            StopHapticFeedback();
+        }
+        
+        // Trigger within range sound ONCE when either dial enters range
+        if (!wasInRange && (leftInRange || rightInRange))
+        {
+            GameEvents.OnWithinRange?.Invoke(); // 🎧 fire event once
+            wasInRange = true;
+        }
+        else if (!leftInRange && !rightInRange)
+        {
+            wasInRange = false;
+        }
+        
+
+        // Timer logic for hold-to-match
+        if (bothMatched)
+        {
+            matchTimer += Time.deltaTime;
+
+            if (matchTimer >= holdDuration && !matchTriggered)
+            {
+                Debug.Log("✅ Both dials matched and held!");
+                matchTriggered = true;
+                GameEvents.OnDialsMatched?.Invoke(); // 🎧 Broadcast match
+                Invoke(nameof(GenerateNewTargets), randomDelay);
+            }
+        }
+        else
+        {
+            matchTimer = 0f;
+            matchTriggered = false;
         }
     }
 
@@ -55,7 +94,10 @@ public class TargetManager : MonoBehaviour
     {
         leftDialTargetY = Random.Range(0f, 360f);
         rightDialTargetY = Random.Range(0f, 360f);
+        matchTimer = 0f;
+        matchTriggered = false;
 
+        GameEvents.OnNewTargets?.Invoke(); // 🎧 Broadcast new target
         Debug.Log($"🎯 New targets: Left {leftDialTargetY:F1}°, Right {rightDialTargetY:F1}°");
     }
 
@@ -77,7 +119,7 @@ public class TargetManager : MonoBehaviour
     {
         if (gamepad != null)
         {
-            gamepad.SetMotorSpeeds(lowFrequency, highFrequency); // Set motor speeds for vibration
+            gamepad.SetMotorSpeeds(lowFrequency, highFrequency);
         }
     }
 
@@ -85,9 +127,7 @@ public class TargetManager : MonoBehaviour
     {
         if (gamepad != null)
         {
-            gamepad.SetMotorSpeeds(0f, 0f); // Stop vibration
+            gamepad.SetMotorSpeeds(0f, 0f);
         }
     }
 }
-
-
