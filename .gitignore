@@ -87,3 +87,6 @@ Alohomora/Assets/Plugins/FMOD/platforms/tvos/lib
 Alohomora/Assets/Plugins/FMOD/platforms/uwp/lib
 Alohomora/Assets/Plugins/FMOD/platforms/visionos/lib
 Alohomora/Assets/Plugins/FMOD/platforms/win/lib
+Alohomora/.idea
+Alohomora/obj
+Alohomora/fmod_editor.log

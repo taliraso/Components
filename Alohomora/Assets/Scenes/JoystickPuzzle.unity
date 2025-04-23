@@ -119,54 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &60362454
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 60362455}
-  - component: {fileID: 60362456}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &60362455
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60362454}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 526007917}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &60362456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60362454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef4b64c7ef8534b408f0dac9ae6d59fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sfxSource: {fileID: 0}
-  dialsMatchedClip: {fileID: 8300000, guid: 1b2ae18bbc46ccc4c97d3ae9840b99d7, type: 3}
-  withinRangeClip: {fileID: 8300000, guid: 4cdceec5c16beb8468012a9a4883a0bd, type: 3}
-  newTargetClip: {fileID: 8300000, guid: 0099843258c027e438031526266d62a6, type: 3}
 --- !u!1001 &510232120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -179,6 +131,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 36709f32afa9f0d44bdcce96b982fac4, type: 2}
+    - target: {fileID: 2940081007895664363, guid: 5617be70d2c033d4e88d43fda14820f8, type: 3}
+      propertyPath: sceneAudioEventConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 018911aced62537478ac82f522f5f676, type: 2}
     - target: {fileID: 3081102741364366624, guid: 5617be70d2c033d4e88d43fda14820f8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -219,6 +175,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5137132523940642131, guid: 5617be70d2c033d4e88d43fda14820f8, type: 3}
+      propertyPath: thisStick
+      value: 
+      objectReference: {fileID: 510232122}
+    - target: {fileID: 5137132523940642131, guid: 5617be70d2c033d4e88d43fda14820f8, type: 3}
+      propertyPath: sceneAudioEventConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 018911aced62537478ac82f522f5f676, type: 2}
     - target: {fileID: 8579444546896250820, guid: 5617be70d2c033d4e88d43fda14820f8, type: 3}
       propertyPath: m_Name
       value: Joystick_Left
@@ -231,6 +195,11 @@ PrefabInstance:
 --- !u!4 &510232121 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3081102741364366624, guid: 5617be70d2c033d4e88d43fda14820f8, type: 3}
+  m_PrefabInstance: {fileID: 510232120}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &510232122 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8579444546896250820, guid: 5617be70d2c033d4e88d43fda14820f8, type: 3}
   m_PrefabInstance: {fileID: 510232120}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &526007916
@@ -258,12 +227,13 @@ Transform:
   m_GameObject: {fileID: 526007916}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.27108, y: 2.6256554, z: 1.4181873}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 740794454}
   - {fileID: 1013406721}
-  - {fileID: 60362455}
+  - {fileID: 847598844}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &673082388 stripped
@@ -271,11 +241,102 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1094689151786211024, guid: 5617be70d2c033d4e88d43fda14820f8, type: 3}
   m_PrefabInstance: {fileID: 8834763043360864366}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &740794453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 740794454}
+  - component: {fileID: 740794455}
+  m_Layer: 0
+  m_Name: GameCore
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &740794454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740794453}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 526007917}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &740794455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740794453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddc86de3f6a24394abf18fe92af377b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &825837443 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3081102741364366624, guid: 5617be70d2c033d4e88d43fda14820f8, type: 3}
   m_PrefabInstance: {fileID: 8834763043360864366}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &847598843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 847598844}
+  - component: {fileID: 847598845}
+  m_Layer: 0
+  m_Name: SceneAudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &847598844
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847598843}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 526007917}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &847598845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847598843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4b64c7ef8534b408f0dac9ae6d59fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneAudioEventConfig: {fileID: 11400000, guid: c410c195aef53504e8f8ca4725eae365, type: 2}
+  LeftStick: {fileID: 510232122}
+  RightStick: {fileID: 8834763043360864367}
 --- !u!1 &858752952
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,6 +502,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2fdf622d4243845a80ee1347878b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actingStick: {fileID: 0}
+  joystickLeft: {fileID: 0}
+  joystickRight: {fileID: 0}
   matchTolerance: 7.5
   hapticThreshold: 7.5
   holdDuration: 1
@@ -644,6 +708,10 @@ PrefabInstance:
       propertyPath: stick
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2940081007895664363, guid: 5617be70d2c033d4e88d43fda14820f8, type: 3}
+      propertyPath: sceneAudioEventConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 0b38b99fcd54b434e960b970538a8914, type: 2}
     - target: {fileID: 3081102741364366624, guid: 5617be70d2c033d4e88d43fda14820f8, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.6
@@ -696,6 +764,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5137132523940642131, guid: 5617be70d2c033d4e88d43fda14820f8, type: 3}
+      propertyPath: thisStick
+      value: 
+      objectReference: {fileID: 8834763043360864367}
+    - target: {fileID: 5137132523940642131, guid: 5617be70d2c033d4e88d43fda14820f8, type: 3}
+      propertyPath: sceneAudioEventConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 0b38b99fcd54b434e960b970538a8914, type: 2}
     - target: {fileID: 8579444546896250820, guid: 5617be70d2c033d4e88d43fda14820f8, type: 3}
       propertyPath: m_Name
       value: Joystick_Right
@@ -705,6 +781,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5617be70d2c033d4e88d43fda14820f8, type: 3}
+--- !u!1 &8834763043360864367 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8579444546896250820, guid: 5617be70d2c033d4e88d43fda14820f8, type: 3}
+  m_PrefabInstance: {fileID: 8834763043360864366}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
