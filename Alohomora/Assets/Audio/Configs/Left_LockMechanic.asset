@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6528cd44a128bba438ee22f7406015b0, type: 3}
+  m_Name: Left_LockMechanic
+  m_EditorClassIdentifier: 
+  audioEvents:
+  - name: LockMovement
+    eventReference:
+      Guid:
+        Data1: -2125954893
+        Data2: 1279366498
+        Data3: -1300316499
+        Data4: -745007153
+      Path: event:/LockMechanic/LeftLockMovement
+    loop: 0
+  - name: StickInit
+    eventReference:
+      Guid:
+        Data1: -1743897203
+        Data2: 1196470815
+        Data3: 286612626
+        Data4: -1385328161
+      Path: event:/LockMechanic/LeftStickInitLoop
+    loop: 0
+  - name: StickLockOn
+    eventReference:
+      Guid:
+        Data1: 1012092396
+        Data2: 1094506694
+        Data3: 1824048282
+        Data4: 288370467
+      Path: event:/LockMechanic/LeftStickLockedOn
+    loop: 0

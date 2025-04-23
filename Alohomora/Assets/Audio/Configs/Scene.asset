@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6528cd44a128bba438ee22f7406015b0, type: 3}
+  m_Name: Scene
+  m_EditorClassIdentifier: 
+  audioEvents:
+  - name: EnterLockMechanic
+    eventReference:
+      Guid:
+        Data1: 1714598023
+        Data2: 1177228845
+        Data3: -156184416
+        Data4: 601326884
+      Path: event:/UI/EnterLockMechanic
+    loop: 0
+  - name: ExitLockMechanic
+    eventReference:
+      Guid:
+        Data1: 1058138793
+        Data2: 1276641134
+        Data3: 1503347117
+        Data4: 1995961434
+      Path: event:/UI/ExitLockMechanic
+    loop: 0
+  - name: HoldTimerStart
+    eventReference:
+      Guid:
+        Data1: 921751337
+        Data2: 1223488283
+        Data3: -1807116135
+        Data4: -1807691005
+      Path: event:/LockMechanic/HoldTimerStart
+    loop: 0
+  - name: Unlock
+    eventReference:
+      Guid:
+        Data1: -1794762019
+        Data2: 1139111018
+        Data3: 78837651
+        Data4: 514412682
+      Path: event:/LockMechanic/Unlock
+    loop: 0
+  - name: Music
+    eventReference:
+      Guid:
+        Data1: 1449387577
+        Data2: 1255317024
+        Data3: 1937998976
+        Data4: -924221067
+      Path: event:/Music/Music_Master
+    loop: 0
+  - name: StickInit
+    eventReference:
+      Guid:
+        Data1: 363584199
+        Data2: 1206739907
+        Data3: -993193303
+        Data4: 113323817
+      Path: event:/LockMechanic/StickInitLoop
+    loop: 0

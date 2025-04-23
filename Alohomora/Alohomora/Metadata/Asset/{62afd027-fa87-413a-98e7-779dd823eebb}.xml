@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EncodableAsset" id="{62afd027-fa87-413a-98e7-779dd823eebb}">
+		<property name="assetPath">
+			<value>LockMechanic/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{12aa05c9-9ed3-437c-9666-74ae54cb31a6}</destination>
+		</relationship>
+	</object>
+</objects>

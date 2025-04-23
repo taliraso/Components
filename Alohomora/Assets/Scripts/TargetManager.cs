@@ -3,6 +3,9 @@ using UnityEngine.InputSystem;
 
 public class TargetManager : MonoBehaviour
 {
+    public GameObject actingStick;
+    public GameObject joystickLeft;
+    public GameObject joystickRight;
     private bool wasInRange = false;
     
     [Header("Settings")]
@@ -51,35 +54,53 @@ public class TargetManager : MonoBehaviour
         // Haptic Feedback
         if (leftInRange || rightInRange)
         {
-            TriggerHapticFeedback(0.5f, 0.5f);
+            TriggerHapticFeedback(0.1f, 0.5f);
         }
         else
         {
             StopHapticFeedback();
         }
         
-        // Trigger within range sound ONCE when either dial enters range
-        if (!wasInRange && (leftInRange || rightInRange))
+        // Determine which stick is in range
+        if (!wasInRange && leftInRange)
         {
+            actingStick = joystickLeft;
             GameEvents.OnWithinRange?.Invoke(); // 🎧 fire event once
+            GameEvents.OnLockMove?.Invoke(); // 🎧 fire event once
+        }
+        else if (!wasInRange && rightInRange)
+        {
+            actingStick = joystickRight;
+            GameEvents.OnWithinRange?.Invoke(); // 🎧 fire event once
+            GameEvents.OnLockMove?.Invoke(); // 🎧 fire event once
+        }
+        else
+        {
+            wasInRange = false;
+        }
+        
+        // Trigger within range sound ONCE when either dial enters range
+        /*if (!wasInRange && (leftInRange || rightInRange))
+        {
             wasInRange = true;
         }
         else if (!leftInRange && !rightInRange)
         {
             wasInRange = false;
-        }
+        }*/
         
 
         // Timer logic for hold-to-match
         if (bothMatched)
         {
             matchTimer += Time.deltaTime;
+            GameEvents.OnDialsMatched?.Invoke(); // 🎧 Broadcast match
 
             if (matchTimer >= holdDuration && !matchTriggered)
             {
                 Debug.Log("✅ Both dials matched and held!");
                 matchTriggered = true;
-                GameEvents.OnDialsMatched?.Invoke(); // 🎧 Broadcast match
+                GameEvents.Unlock?.Invoke(); // 🎧 Broadcast match
                 Invoke(nameof(GenerateNewTargets), randomDelay);
             }
         }
