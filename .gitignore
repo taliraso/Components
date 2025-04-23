@@ -76,3 +76,14 @@ Alohomora/Temp
 Alohomora/Library
 Alohomora/UserSettings
 Alohomora/Logs
+Alohomora/Alohomora/.cache
+Alohomora/Assets/Plugins/FMOD/Cache
+Alohomora/Assets/Plugins/FMOD/platforms/android/lib
+Alohomora/Assets/Plugins/FMOD/platforms/html5/lib
+Alohomora/Assets/Plugins/FMOD/platforms/ios/lib
+Alohomora/Assets/Plugins/FMOD/platforms/linux/lib
+Alohomora/Assets/Plugins/FMOD/platforms/mac/lib
+Alohomora/Assets/Plugins/FMOD/platforms/tvos/lib
+Alohomora/Assets/Plugins/FMOD/platforms/uwp/lib
+Alohomora/Assets/Plugins/FMOD/platforms/visionos/lib
+Alohomora/Assets/Plugins/FMOD/platforms/win/lib
